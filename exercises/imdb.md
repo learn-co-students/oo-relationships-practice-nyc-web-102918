@@ -4,10 +4,25 @@
 It is 1995 and you are building out IMDB. Take some time to think about the relationships you need to build the site.
 - your models are movies, shows, characters and actors
   - movies and shows have many characters
+        - Movies => Characters
+            - Movies has many characters through Actor 
+        - Shows => Characters
+             - Movies have many characters through Actor 
+        - Character -> Actor
+            - Actor belongs to Character
+    Characters => Movie
+    Characters => Shows
+    Actor -> Movie
+    Actor belongs to Movie
+    Actor -> Show
+    Actor belongs to Show
   - actors have many characters
   - characters only have one actor (for this model)
   - characters may have multiple movies or shows
   - what other relationships exist?
+
+
+
 - for an extra twist, afterwards throw episodes into the mix and see how the relationships change
   - a show has many episodes
   - an episode has many characters
