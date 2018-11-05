@@ -5,17 +5,6 @@ You are building the next big crowdfunding site. Users can make projects and fun
 - your models are users, projects and pledges
   - a project will have a pledge goal amount
   - a user can both create and back projects, so a user will have multiple connections to projects based on those different roles
-============================================================
-
-    Project belongs to User (owner)
-    Project belongs to Pledge
-    User has many Projects 
-
-
-User --->Project ---> pledge
-
-============================================================
-
 
 Write out the relationships using has_many, belongs_to and has_many_through. Write out a schema that shows what these tables might look like in a database. Where would the foreign keys live? Then *build out methods reflecting all these relationships.* What method can I call on a user to find other users who have backed his/her projects, etc?
 
