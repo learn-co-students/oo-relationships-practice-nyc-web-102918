@@ -1,15 +1,15 @@
 class Pledge
-    attr_accessor :backer, :amount
+    attr_accessor :backer, :amount, :owner
     @@all = [] 
     def initialize(amount = 0)
         @amount = amount
-        
         self.class.all << self
     end
 
     def self.all
         @@all
     end
+
 
     def project
         Project.all.find{|project| project.pledge == self}

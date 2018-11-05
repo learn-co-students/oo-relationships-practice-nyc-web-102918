@@ -15,7 +15,6 @@ class Trainer
         Client.all.select{|client| client.trainer == self}
     end
 
-
     def num_clients
         clients.count
     end
