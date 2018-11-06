@@ -1,14 +1,11 @@
 class Project
-    attr_accessor :pledge, :owner, :name, :backers
+    attr_accessor  :name, :goal
 
     @@all = []
 
-    def initialize(user, name, pledge)
-        @owner = user
-        @pledge = pledge
+    def initialize(name, goal= 0)
+        @goal = goal
         @name = name
-        @backers = []
-
         self.class.all << self
     end
 
@@ -16,30 +13,35 @@ class Project
         @@all
     end
 
+    def pledges
+        Pledge.all.select{|pledge| pledge.project == self && pledge.amount > 0}
+    end
+
+    def above_goal?
+        if goal== 0
+            false
+        else
+
+            pledge_amount_array = pledges.map{|pledge| pledge.amount}
+
+            pledge_amount = pledge_amount_array.inject(:+)
+
+            pledge_amount >= goal
+        end
+    end
+
     def self.no_pledges
-        all.select{|project| project.pledge.amount == 0}
-    end
-
-    def self.find_project(name)
-        all.detect{|project| project.name == name}
-    end
-
-    def donate(backer_pledge)
-        backers << backer_pledge
-        pledge.amount -= backer_pledge.amount
-        pledge.amount
-    end
-
-    def num_backers
-        backers.length
+        all.select{|project| project.pledges.count == 0}
     end
 
     def self.above_goal
-        all.select{|project| project.pledge.amount <= 0}
+        all.select{|project| project.above_goal?}
     end
 
+
     def self.most_backers
-        all.sort{|projectA, projectB| projectB.num_backers <=> projectA.num_backers}.first
+        all.sort{|projectA, projectB| projectA.pledges.count <=> projectB.pledges.count}.last
     end
+
 
 end

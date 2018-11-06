@@ -4,11 +4,21 @@ def reload
   load 'config/environment.rb'
 end
 
+# IMDB #
 
+show1 = Show.new("The objects")
+movie1 = Movie.new("The objects")
+movie2 = Movie.new("CodeLab")
+actor1 = Actor.new("Crystal")
+actor2 = Actor.new("Ruth")
 
+character1 = Character.new("C-rock", actor1, movie1)
 
+character2 = Character.new("R-rock", actor2, nil, show1)
 
+character3 = Character.new("R-rock", actor1, nil, movie1)
 
+character1 = Character.new("C-rock", actor1, movie2)
 
 
 # AIRBNB #
@@ -51,6 +61,7 @@ end
 # david.assign_trainer(crystal)
 # michael.assign_trainer(ruth)
 
+# CROWDFUNDING #
 
 # ruth = User.new("Ruth")
 
@@ -61,17 +72,16 @@ end
 # isiah = User.new("Isiah")
 
 
-# CROWDFUNDING #
 
-# ruth.create_a_project("Save the Whales", 50)
 
 # matt.create_a_project("Critical Role", 100)
 
 # crystal.create_a_project("Board games", 1000)
 
-# isiah.create_a_project("life")
+# isiah.create_a_project("DnD life")
 
 # ruth.pledge_for_a_project("Critical Role", 10)
+
 # isiah.pledge_for_a_project("Critical Role", 10)
 
 # ruth.pledge_for_a_project("Board games", 90)

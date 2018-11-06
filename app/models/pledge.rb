@@ -1,7 +1,10 @@
 class Pledge
-    attr_accessor :backer, :amount, :owner
+    attr_accessor :amount, :user, :project
     @@all = [] 
-    def initialize(amount = 0)
+
+    def initialize(project, user, amount = 0)
+        @project = project
+        @user = user
         @amount = amount
         self.class.all << self
     end
@@ -11,17 +14,8 @@ class Pledge
     end
 
 
-    def project
-        Project.all.find{|project| project.pledge == self}
+    def self.projects
+        all.map{|pledge| pledge.project}.uniq
     end
 
-    def user
-        project.owner
-    end
-
-    def self.donate(backer, amount)
-        pledge = new(amount)
-        pledge.backer = backer
-        pledge
-    end
 end
